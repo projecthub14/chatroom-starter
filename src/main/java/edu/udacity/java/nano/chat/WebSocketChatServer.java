@@ -28,7 +28,7 @@ public class WebSocketChatServer {
     private static Map<String, Session> onlineSessions = new ConcurrentHashMap<>();
 
     private static void sendMessageToAll(String msg) {
-        //TODO: add send message method.
+
         onlineSessions.entrySet().forEach(entry -> {
                     try {
                         Session session = entry.getValue();
@@ -46,13 +46,6 @@ public class WebSocketChatServer {
         );
     }
 
-    /**
-     * Open connection, 1) add session, 2) add user.
-     */
-
-    //    public void onOpen(Session session) {
-    //        //TODO: add on open connection.
-    //    }
     @OnOpen
     public void onOpen(Session session,@PathParam("username") String username)throws IOException {
         onlineSessions.put(username, session);
@@ -65,7 +58,6 @@ public class WebSocketChatServer {
      */
     @OnMessage
     public void onMessage(Session session, String jsonStr) throws IOException {
-        //TODO: add send message.
 
         Message message = JSON.parseObject(jsonStr, Message.class);
         Message messageObj = new Message();
@@ -83,7 +75,7 @@ public class WebSocketChatServer {
      */
     @OnClose
     public void onClose(Session session,@PathParam("username") String username) {
-        //TODO: add close connection.
+
         Message message = new Message();
         onlineSessions.remove(username);
         message.setType("CLOSE");
