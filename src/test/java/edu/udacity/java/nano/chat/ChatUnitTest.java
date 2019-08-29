@@ -31,16 +31,22 @@ public class ChatUnitTest {
         WebElement userNameElement = this.webDriver.findElement(By.id("username"));
         userNameElement.sendKeys("user1");
 
-        WebElement submitElement = this.webDriver.findElement(By.className("submit"));
-        submitElement.click();
+        WebElement loginElement = this.webDriver.findElement(By.className("submit"));
+        loginElement.click();
 
-        Assert.assertNotNull(submitElement);
+        Assert.assertNotNull(loginElement);
 
         WebElement testAreaElement = this.webDriver.findElement(By.id("msg"));
         testAreaElement.sendKeys("Hello There");
 
         WebElement sendMsgElement = this.webDriver.findElement(By.className("sendMsg"));
         sendMsgElement.click();
+
+
+        WebElement logoutElement = this.webDriver.findElement(By.id("logout"));
+        logoutElement.click();
+
+        Assert.assertNotNull(logoutElement);
 
         //WebElement webElement = this.webDriver.findElement(By.cssSelector("div[class='mdui-card-content message-content']"));
         //System.out.println(webElement.getText());
