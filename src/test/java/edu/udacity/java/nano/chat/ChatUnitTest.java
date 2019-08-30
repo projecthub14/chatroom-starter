@@ -31,6 +31,8 @@ public class ChatUnitTest {
         WebElement userNameElement = this.webDriver.findElement(By.id("username"));
         userNameElement.sendKeys("user1");
 
+
+
         WebElement loginElement = this.webDriver.findElement(By.className("submit"));
         loginElement.click();
 
@@ -42,19 +44,28 @@ public class ChatUnitTest {
         WebElement sendMsgElement = this.webDriver.findElement(By.className("sendMsg"));
         sendMsgElement.click();
 
-
-        WebElement logoutElement = this.webDriver.findElement(By.id("logout"));
-        logoutElement.click();
-
-        Assert.assertNotNull(logoutElement);
-
-        //WebElement webElement = this.webDriver.findElement(By.cssSelector("div[class='mdui-card-content message-content']"));
-        //System.out.println(webElement.getText());
-
-//        System.out.println("Message is " + msgElement.findElement(By.className("mdui-card-content")).getAttribute("value"));
-        //Assert.assertNotNull("Message Sent",msgElement.getAttribute("value"));
+        Assert.assertNotNull(loginElement);
 
     }
+
+    @Test
+    public void chat_logout()
+    {
+        this.webDriver.get("http://localhost:8080");
+
+        WebElement userNameElement = this.webDriver.findElement(By.id("username"));
+        userNameElement.sendKeys("user2");
+
+        WebElement loginElement = this.webDriver.findElement(By.className("submit"));
+        loginElement.click();
+
+        WebElement logoutElement = this.webDriver.findElement(By.id("logout")); //leave the chat
+        logoutElement.click();
+
+        String title = this.webDriver.getTitle();
+        Assert.assertEquals("Chat Room Login",title); //in login page
+    }
+
 
     @After
     public void tearDown() {
