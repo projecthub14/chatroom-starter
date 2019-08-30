@@ -39,6 +39,7 @@ public class WebSocketChatApplication {
             ModelAndView mv = new ModelAndView("/chat");
             mv.addObject("username", username);
             return mv;
+
         }
 
     }
